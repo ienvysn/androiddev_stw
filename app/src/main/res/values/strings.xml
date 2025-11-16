@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Kot_start</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_profile2">ProfileActivity2</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_spotify">spotify</string>
+    <string name="title_activity_login">login</string>
+    <string name="title_activity_cards">cards</string>
 </resources>
