@@ -1,7 +1,12 @@
 package com.example.kot_start
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -51,11 +56,17 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
+import com.example.kot_start.repository.UserRepoImpl
 //import com.example.kot_start.ui.theme.Blue
 import com.example.kot_start.ui.theme.PurpleGrey80
 import com.example.kot_start.ui.theme.LightBlue
 import com.example.kot_start.ui.theme.follow
+import com.example.kot_start.viewmodel.UserViewModel
+import kotlin.jvm.java
+import kotlin.reflect.KClass
+
 
 class login : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,10 +82,14 @@ class login : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun loginBody() {
-
+    val userViewModel= remember{ UserViewModel(UserRepoImpl()) };
+    val context = LocalContext.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var visibility by remember { mutableStateOf(false) }
+    val sharedPreferences= context.getSharedPreferences("User", MODE_PRIVATE)
+
+    val activity = context as Activity
     Scaffold { padding ->
         Column {
             Spacer(modifier = Modifier.padding(25.dp))
@@ -207,6 +222,16 @@ fun loginBody() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
+                            userViewModel.forgetPassword("ienvysnn@gmail.com"){
+                                sucess,msg->
+                                if(sucess){
+                                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                                }else{
+                                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                                }
+
+                            }
+
 
                         }
                         .padding(vertical = 15.dp, horizontal = 15.dp)
@@ -214,6 +239,18 @@ fun loginBody() {
 
                 Button(
                     onClick = {
+
+                       userViewModel.login(email,password){
+                           success,msg ->
+                           if(success){
+                               Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                               val intent = Intent(context,
+                                   dashbaord::class.java)
+                               context.startActivity(intent)
+                           }else {
+                               Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                           }
+                       }
 
                     },
                     elevation = ButtonDefaults.buttonElevation(
@@ -231,7 +268,11 @@ fun loginBody() {
 
                 Spacer(modifier = Modifier.padding(vertical = 12.dp))
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().clickable{
+                        val intent = Intent(context, register::class.java)
+                        context.startActivity(intent)
+                        activity.finish()
+                    },
                     textAlign = TextAlign.Center,
                     text = buildAnnotatedString {
                         append("Don't have an account? ")

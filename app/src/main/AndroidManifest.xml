@@ -12,6 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kot_start">
         <activity
+            android:name=".AddProduct"
+            android:exported="true"
+            android:label="@string/title_activity_add_product"
+            android:theme="@style/Theme.Kot_start">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".dashbaord"
+            android:exported="false"
+            android:label="@string/title_activity_dashbaord"
+            android:theme="@style/Theme.Kot_start" />
+        <activity
+            android:name=".register"
+            android:exported="true"
+            android:label="@string/title_activity_register"
+            android:theme="@style/Theme.Kot_start">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".cards"
             android:exported="true"
             android:label="@string/title_activity_cards"

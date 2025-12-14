@@ -61,7 +61,8 @@ fun CardBody(){
                 Image(painter = painterResource(R.drawable.high5),contentDescription = null,
                     Modifier.size(50.dp).clip(CircleShape) )
             }
-//            Spacer(modifier = Modifier.padding(vertical = 5.dp))
+
+//          l  Spacer(modifier = Modifier.padding(vertical = 5.dp))
             Column (modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp)){
                 Text("Card", style = TextStyle(fontSize = 36.sp, color = Color.White, fontWeight = FontWeight.Medium))
                 Text("Simple and easy to use app", style = TextStyle(fontSize = 22.sp, color = Color.White.copy(0.7f), fontWeight = FontWeight.Medium))
@@ -72,18 +73,18 @@ fun CardBody(){
             Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp,vertical = 10.dp)){
                 CardMaker(modifier = Modifier.weight(1f) .height(170.dp).padding(end = 10.dp).background(
                     cardback, shape = RoundedCornerShape(10.dp)
-                ), image = R.drawable.high4,label = "Text")
+                ), image = R.drawable.card,label = "Text")
                 CardMaker(modifier = Modifier.weight(1f) .height(170.dp).padding(horizontal = 10.dp).background(
                     cardback, shape = RoundedCornerShape(10.dp)
-                ), image = R.drawable.high4,label = "Address")
+                ), image = R.drawable.human,label = "Address")
             }
             Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp, vertical = 10.dp)){
                 CardMaker(modifier = Modifier.weight(1f) .height(170.dp).padding(end = 10.dp).background(
                     cardback, shape = RoundedCornerShape(10.dp)
-                ), image = R.drawable.high4,label = "Character")
+                ), image = R.drawable.curch,label = "Character")
                 CardMaker(modifier = Modifier.weight(1f) .height(170.dp).padding(horizontal = 10.dp).background(
                     cardback, shape = RoundedCornerShape(10.dp)
-                ), image = R.drawable.high4,label = "Bank")
+                ), image = R.drawable.communication,label = "Bank")
             }
             Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 15.dp, vertical = 10.dp)){
                 CardMaker(modifier = Modifier.weight(1f) .height(170.dp).padding(end = 10.dp).background(

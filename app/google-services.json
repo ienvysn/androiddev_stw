@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "640292600854",
+    "firebase_url": "https://kotstart-default-rtdb.firebaseio.com",
+    "project_id": "kotstart",
+    "storage_bucket": "kotstart.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640292600854:android:190210c19e6b29c1648937",
+        "android_client_info": {
+          "package_name": "com.example.kot_start"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCZhabY6khTEgh0X4CghcX0y3ls_8N_Po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

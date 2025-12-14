@@ -6,4 +6,7 @@
     <string name="title_activity_spotify">spotify</string>
     <string name="title_activity_login">login</string>
     <string name="title_activity_cards">cards</string>
+    <string name="title_activity_register">register</string>
+    <string name="title_activity_dashbaord">dashbaord</string>
+    <string name="title_activity_add_product">AddProduct</string>
 </resources>
