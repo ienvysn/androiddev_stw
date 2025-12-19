@@ -21,6 +21,9 @@ class ProductRepoImlp: ProductRepo {
         val id = ref.push().key.toString()
         model.productId = id
 
+
+
+
         ref.child(id).setValue(model).addOnCompleteListener {
         if(it.isSuccessful){
             callback(true,"Product Added")

@@ -5,16 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -25,7 +21,6 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,20 +33,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.example.kot_start.ui.theme.Kot_startTheme
 
-class dashbaord : ComponentActivity() {
+class Dashbaord : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             Kot_startTheme {
-                dashboardBody()
+                DashboardBody()
             }
         }
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun dashboardBody(){
+fun DashboardBody(){
     val context = LocalContext.current
     val sharedPreferences = context.getSharedPreferences("User", Context.MODE_PRIVATE)
     val localEmail: String? = sharedPreferences.getString("email", null)
@@ -142,8 +137,8 @@ fun dashboardBody(){
 }
 @Composable
 @Preview
-fun dashbaordPreview(){
+fun DashbaordPreview(){
     Kot_startTheme {
-        dashboardBody()
+        DashboardBody()
     }
 }

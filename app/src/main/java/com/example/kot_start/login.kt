@@ -2,7 +2,6 @@ package com.example.kot_start
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
@@ -65,7 +64,6 @@ import com.example.kot_start.ui.theme.LightBlue
 import com.example.kot_start.ui.theme.follow
 import com.example.kot_start.viewmodel.UserViewModel
 import kotlin.jvm.java
-import kotlin.reflect.KClass
 
 
 class login : ComponentActivity() {
@@ -245,7 +243,7 @@ fun loginBody() {
                            if(success){
                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
                                val intent = Intent(context,
-                                   dashbaord::class.java)
+                                   Dashbaord::class.java)
                                context.startActivity(intent)
                            }else {
                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
@@ -320,7 +318,7 @@ fun SocialMediaCard(modifier: Modifier, image: Int, label: String) {
 }
 
 @Composable
-fun card() {
+fun card(modifier: Modifier) {
 
 }
 @Preview

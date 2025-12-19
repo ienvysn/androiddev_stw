@@ -23,7 +23,9 @@ class ProductViewModel(val repo: ProductRepo) {
     val products: MutableLiveData<ProductModel?>
         get() = _products
 
-//    private val _allproducts= MutableLiveData<List<UserModel>?>()
+    private val _allproducts= MutableLiveData<List<ProductModel>?>()
+    val allproducts: MutableLiveData<List<ProductModel>?>
+        get() = _allproducts
 
 
 
@@ -39,8 +41,15 @@ class ProductViewModel(val repo: ProductRepo) {
 
         }
     }
-    fun getAllProduct(callback: (Boolean, String, List<ProductModel>?) -> Unit){
-        repo.getAllProduct(callback)
+    fun getAllProduct() {
+        repo.getAllProduct { sucess, msg, data ->
+            if (sucess) {
+                _allproducts.postValue(data)
+            } else {
+                _allproducts.postValue(data)
+
+            }
+        }
     }
 
 
