@@ -1,6 +1,7 @@
 package com.example.kot_start
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,15 +14,22 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,34 +46,38 @@ import com.example.kot_start.viewmodel.ProductViewModel
 
 @Composable
 fun HomeScreen() {
-    val images = listOf(
-        R.drawable.high1,
-        R.drawable.high2,
-        R.drawable.high3,
-        R.drawable.high4,
-        R.drawable.high5,
-        R.drawable.harry,
-        R.drawable.joji,
-        R.drawable.snoppy,
-        R.drawable.wopper
-    )
-
-    val imaName =
-        listOf("Batman", "Spiderman", "Roblox", "Gojo", "Silk", "Harry", "Joji", "snoopy", "wopper")
-    val product = listOf(
-        R.drawable.hoodie,
-        R.drawable.tshirt,
-        R.drawable.jacket,
-        R.drawable.jeanjacket,
-        R.drawable.jeansjacket,
-        R.drawable.many,
-        R.drawable.retro,
-        R.drawable.dino,
-        R.drawable.zipup
-    )
-
-    val imaPrice = listOf("1200", "500", "760", "999", "200", "250", "800")
-    val productPrice = listOf("2100", "1500", "1760", "999", "2200", "1250", "800")
+    var productName by remember { mutableStateOf("") }
+    var productDescription by remember { mutableStateOf("") }
+    var productPrice by remember { mutableStateOf("") }
+    var productStock by remember { mutableStateOf("") }
+//    val images = listOf(
+//        R.drawable.high1,
+//        R.drawable.high2,
+//        R.drawable.high3,
+//        R.drawable.high4,
+//        R.drawable.high5,
+//        R.drawable.harry,
+//        R.drawable.joji,
+//        R.drawable.snoppy,
+//        R.drawable.wopper
+//    )
+//
+//    val imaName =
+//        listOf("Batman", "Spiderman", "Roblox", "Gojo", "Silk", "Harry", "Joji", "snoopy", "wopper")
+//    val product = listOf(
+//        R.drawable.hoodie,
+//        R.drawable.tshirt,
+//        R.drawable.jacket,
+//        R.drawable.jeanjacket,
+//        R.drawable.jeansjacket,
+//        R.drawable.many,
+//        R.drawable.retro,
+//        R.drawable.dino,
+//        R.drawable.zipup
+//    )
+//
+//    val imaPrice = listOf("1200", "500", "760", "999", "200", "250", "800")
+//    val productPrice = listOf("2100", "1500", "1760", "999", "2200", "1250", "800")
 val context= LocalContext.current
     val productViewModel = remember { ProductViewModel(ProductRepoImlp()) };
     LaunchedEffect(key1 = Unit) {
@@ -74,11 +86,131 @@ val context= LocalContext.current
     }
     val allProduct = productViewModel.allproducts.observeAsState(initial = emptyList())
 
+    var showDialog by remember { mutableStateOf(false) }
+
 
     LazyColumn(
         modifier = Modifier.fillMaxSize().background(Color.White),
 //        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        item { if(showDialog){
+          AlertDialog(
+              onDismissRequest = {
+                  showDialog=false
+              },
+              confirmButton = {
+                  TextButton(onClick = {}) {Text("Update") }
+              },
+              dismissButton = {
+                  TextButton(onClick = {}) {Text("Cancel") }
+              },
+              title = {
+                  Text("Update Product")
+              },
+              text = {
+                  OutlinedTextField(
+                      value = productName,
+                      onValueChange = { productName = it },
+
+                      label = {
+                          Text(
+                              "Product Name",
+                              style = TextStyle(color = Color.Black)
+                          )
+                      },
+
+                      shape = RoundedCornerShape(15.dp),
+
+                      singleLine = true,
+                      modifier = Modifier
+                          .fillMaxWidth(),
+
+                      colors = TextFieldDefaults.colors(
+                          focusedContainerColor = Color.Gray,
+                          unfocusedContainerColor = Color.Gray,
+                          focusedIndicatorColor = Color.Gray,
+                          unfocusedIndicatorColor = Color.Transparent
+                      ),
+
+                      )
+                  OutlinedTextField(
+                      value = productDescription,
+                      onValueChange = { productDescription = it },
+
+                      label = {
+                          Text(
+                              "Product Description",
+                              style = TextStyle(color = Color.Black)
+                          )
+                      },
+
+                      shape = RoundedCornerShape(15.dp),
+
+                      singleLine = true,
+                      modifier = Modifier
+                          .fillMaxWidth(),
+                      colors = TextFieldDefaults.colors(
+                          focusedContainerColor = Color.Gray,
+                          unfocusedContainerColor = Color.Gray,
+                          focusedIndicatorColor = Color.Gray,
+                          unfocusedIndicatorColor = Color.Transparent
+                      ),
+
+                      )
+                  OutlinedTextField(
+                      value = productPrice,
+                      onValueChange = { productPrice = it },
+
+                      label = {
+                          Text(
+                              "Product Price",
+                              style = TextStyle(color = Color.Black)
+                          )
+                      },
+
+                      shape = RoundedCornerShape(15.dp),
+
+                      singleLine = true,
+                      modifier = Modifier
+                          .fillMaxWidth(),
+
+                      colors = TextFieldDefaults.colors(
+                          focusedContainerColor = Color.Gray,
+                          unfocusedContainerColor = Color.Gray,
+                          focusedIndicatorColor = Color.Gray,
+                          unfocusedIndicatorColor = Color.Transparent
+                      ),
+
+                      )
+                  OutlinedTextField(
+                      value = productStock,
+                      onValueChange = { productStock = it },
+
+                      label = {
+                          Text(
+                              "Product Stock",
+                              style = TextStyle(color = Color.Black)
+                          )
+                      },
+
+                      shape = RoundedCornerShape(15.dp),
+
+                      singleLine = true,
+                      modifier = Modifier
+                          .fillMaxWidth(),
+                          
+                      colors = TextFieldDefaults.colors(
+                          focusedContainerColor = Color.Gray,
+                          unfocusedContainerColor = Color.Gray,
+                          focusedIndicatorColor = Color.Gray,
+                          unfocusedIndicatorColor = Color.Transparent
+                      ),
+
+                      )
+              }
+          )
+        }
+        }
 
         items(allProduct.value!!.size) { index ->
             val data = allProduct.value!![index]
@@ -136,16 +268,33 @@ val context= LocalContext.current
                             }
                         }
                     ) {
-                        Column {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
                                 imageVector = Icons.Filled.Delete,
                                 contentDescription = null,
-                                tint = Color(0xFFD32F2F)
+                                tint = Color(0xFFD32F2F),
+                                modifier = Modifier.clickable(
+                                    onClick = {
+                                       productViewModel.deleteProduct(data.productId){
+                                           success,msg->{
+                                               Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                                           }
+                                       }
+                                    }
+
+                                )
+
                             )
                             Icon(
                                 imageVector = Icons.Filled.Edit,
                                 contentDescription = null,
-                                tint = Color(0xFFD32F2F)
+                                tint = Color(0xFFD32F2F),
+                                modifier = Modifier.clickable(
+                                    onClick = {
+                                        showDialog = true
+                                    }
+
+                                )
                             )
                         }
                     }
